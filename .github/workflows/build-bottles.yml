@@ -19,6 +19,19 @@ jobs:
           mkdir "${{runner.temp}}/bottles"
           cd "${{runner.temp}}/bottles"
           brew test-bot musl-cross-aarch64
+          brew test-bot musl-cross-arm
+          brew test-bot musl-cross-arm-hf
+          brew test-bot musl-cross-i386
+          brew test-bot musl-cross-i486
+          brew test-bot musl-cross-i586
+          brew test-bot musl-cross-i686
+          brew test-bot musl-cross-powerpc
+          brew test-bot musl-cross-powerpc-sf
+          brew test-bot musl-cross-powerpc64
+          brew test-bot musl-cross-powerpc64le
+          brew test-bot musl-cross-riscv64
+          brew test-bot musl-cross-s390x
+          brew test-bot musl-cross-x86_64
       - name: Upload bottles
         uses: actions/upload-artifact@v1
         with:
