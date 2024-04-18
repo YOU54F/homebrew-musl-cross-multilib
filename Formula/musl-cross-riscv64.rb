@@ -11,7 +11,8 @@ class MuslCrossRiscv64 < Formula
 
   option "without-riscv64", "Build cross-compilers targeting riscv64-linux-musl"
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "d4f51d54faa9f1e8488df079c2837c8fec50e1064d347055d6cbc2b34ec340d0"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "2926dd8385ed5253f5155a73fc343827845b5a8f492dad40b1425c7197eeac06"
   end
   depends_on "gnu-sed" => :build
   depends_on "make" => :build
@@ -41,9 +42,9 @@ class MuslCrossRiscv64 < Formula
     sha256 "c6de7b191139142d3f9a7b5b702c9cae1b5ee6e7f57e582da9328629408fd4e8"
   end
 
-  resource "binutils-2.33.1.tar.bz2" do
-    url "https://ftp.gnu.org/gnu/binutils/binutils-2.33.1.tar.bz2"
-    sha256 "0cb4843da15a65a953907c96bad658283f3c4419d6bcc56bf2789db16306adb2"
+  resource "binutils-2.38.tar.bz2" do
+    url "https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.bz2"
+    sha256 "070ec71cf077a6a58e0b959f05a09a35015378c2d8a51e90f3aeabfe30590ef8"
   end
 
   resource "config.sub" do
@@ -88,6 +89,7 @@ class MuslCrossRiscv64 < Formula
     (buildpath/"config.mak").write <<~EOS
       SOURCES = #{buildpath/"resources"}
       OUTPUT = #{libexec}
+      BINUTILS_VER = 2.38
 
       # Drop some features for faster and smaller builds
       COMMON_CONFIG += --disable-nls
